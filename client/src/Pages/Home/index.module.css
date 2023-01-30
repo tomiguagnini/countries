@@ -1,0 +1,33 @@
+.bg{
+    background-image: url("../../Assets/img/world.jpg");
+    background-position: center top;
+    background-size: cover;
+    background-color: #928e8e;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.titleContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.titleContainer h1 {
+    font-size: 60px;
+    color:white;
+    text-shadow: 1px 1px 1px black;
+}
+
+.btn{
+    height: 50px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    background-color: #D7CEB2;
+}
+.btn:hover{
+    cursor: pointer;
+}
