@@ -1,7 +1,8 @@
 const { QueryTypes } = require("sequelize");
 const { Country } = require("../db.js");
 const { conn } = require("../db.js");
-const axios = require("axios") 
+const axios = require("axios"); 
+const Activity = require("../models/Activity.js");
 
 const getAllCountries = async (req, res) => {
     try {
@@ -56,8 +57,21 @@ const getCountryByPK = async (req, res) => {
         return res.status(404).json({ err: error.msg });
     }
 };
+const createActivity = async (req,res)=>{
+    try{
+        const {id, name, difficulty, season,} = req.body;
+        if( !id || !name || !difficulty || !season){
+            throw Error('Faltan campos')
+        }
+        const response = await Activity.create(req.body)
+        return res.status(200).json(response)
+    }catch(error){
+        res.status(401).json({err: error.msg})
+    }
 
+}
 module.exports = {
     getCountryByPK,
     getAllCountries,
+    createActivity
 };
