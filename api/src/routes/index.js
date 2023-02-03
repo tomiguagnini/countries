@@ -10,5 +10,5 @@ const router = Router();
 //router.get("/", (req, res) => res.send("hola"));
 router.get("/countries", getAllCountries);
 router.get("/countries/:id",getCountryByPK);
-router.post("/activities",createActivity);
+router.post("/activities",createActivity); 
 module.exports = router;

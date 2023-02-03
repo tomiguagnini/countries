@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom' 
 import './index.css'
+import ActivityForm from './Pages/ActivityForm';
 import Dashboard from './Pages/Dashboard';
 import Home from './Pages/Home';
 
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <Dashboard/>
+  },
+  {
+    path:'/activity',
+    element:<ActivityForm/>
   }
 ])
 

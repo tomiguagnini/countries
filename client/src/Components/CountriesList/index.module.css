@@ -1,0 +1,11 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 16px;
+    border-radius: 5px;
+}
+.img {
+    width: 50px;
+    padding: 5px;
+}

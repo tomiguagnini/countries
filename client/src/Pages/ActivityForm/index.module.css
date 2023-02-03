@@ -1,0 +1,26 @@
+.container{
+    max-width: 360px;
+    margin: auto;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+}
+.form label{
+    margin-top: 15px;
+}
+.form input {
+    margin-top: 5px;
+    height: 30px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+
+}
+.warning{
+    border:none;
+    border: 1px solid red;
+}
+.danger{
+    color:red;
+}

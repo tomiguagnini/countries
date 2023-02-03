@@ -1,19 +1,20 @@
 const { QueryTypes } = require("sequelize");
-const { Country } = require("../db.js");
+const { Country, Activity } = require("../db.js");
 const { conn } = require("../db.js");
-const axios = require("axios"); 
-const Activity = require("../models/Activity.js");
+const axios = require("axios");
 
 const getAllCountries = async (req, res) => {
     try {
         const { name } = req.query;
         if (name) {
-            const results = await conn.query('SELECT * FROM "Countries" WHERE name ILIKE :search_name',
-            {
-              replacements: {search_name:`%${name}%`},
-              type: QueryTypes.SELECT
-            });
-            return res.status(200).json(results)
+            const results = await conn.query(
+                'SELECT * FROM "Countries" WHERE name ILIKE :search_name',
+                {
+                    replacements: { search_name: `%${name}%` },
+                    type: QueryTypes.SELECT,
+                }
+            );
+            return res.status(200).json(results);
         } else {
             const allCountries = await Country.findAll();
             if (allCountries.length === 0) {
@@ -48,30 +49,46 @@ const getCountryByPK = async (req, res) => {
     try {
         const { id } = req.params;
         const country = await Country.findByPk(id.toUpperCase());
+
         if (country === null) {
             throw Error("Not Found");
         } else {
             return res.status(200).json(country);
         }
+        
     } catch (error) {
         return res.status(404).json({ err: error.msg });
     }
 };
-const createActivity = async (req,res)=>{
-    try{
-        const {id, name, difficulty, season,} = req.body;
-        if( !id || !name || !difficulty || !season){
-            throw Error('Faltan campos')
-        }
-        const response = await Activity.create(req.body)
-        return res.status(200).json(response)
-    }catch(error){
-        res.status(401).json({err: error.msg})
-    }
+const createActivity = async (req, res) => {
+    try {
+        // const obj ={
+        //     id:Math.floor(Math.random()*100000).toString(),
+        //     name:"Playa",
+        //     difficulty:"2",
+        //     duration:"1 semana",
+        //     season : "Verano",
+        //     idCountry:"ARG"
 
-}
+        // }
+
+        req.body.id = Math.floor(Math.random() * 100000).toString();
+        const { id, name, difficulty, season, duration, idCountry } = req.body;
+        console.log(req.body);
+        if (!id || !name || !difficulty || !season || !duration || !idCountry) {
+            throw Error("Faltan campos");
+        }
+        const country = await Country.findByPk(idCountry.toUpperCase());
+        const activity = await Activity.create(req.body);
+        activity.addCountry(country);
+        return res.status(200).json(activity);
+    } catch (error) {
+        console.log(error);
+        return res.status(404).json({ err: error.message });
+    }
+};
 module.exports = {
     getCountryByPK,
     getAllCountries,
-    createActivity
+    createActivity,
 };
