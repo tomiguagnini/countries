@@ -5,7 +5,17 @@
     margin-top: 16px;
     border-radius: 5px;
 }
+.cardContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
 .img {
     width: 50px;
     padding: 5px;
+}
+.pageButton{
+    position: sticky;
+    bottom: 10px;
 }

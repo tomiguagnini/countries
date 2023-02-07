@@ -27,6 +27,7 @@
     border: none;
     border-radius: 5px;
     background-color: #D7CEB2;
+    font-weight: 600;
 }
 .btn:hover{
     cursor: pointer;

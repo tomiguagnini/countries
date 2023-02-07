@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CountriesList from "../../Components/CountriesList";
-import { getCountriesByName } from "../../services";
+import { getCountries, getCountriesByName } from "../../services";
 import * as style from "./index.module.css";
 
-function Dashboard(props) {
+function Dashboard() {
     const [countries, setCountries] = useState([]);
     
     const handleSubmit = (e) => {
@@ -17,6 +17,11 @@ function Dashboard(props) {
             (err) => console.log(err.message)
         )
     }
+    useEffect(() => {
+        getCountries().then((response) => {
+            setCountries(response.data);
+        });
+    }, []);
 
     return (
         <div className={style.bg}>
@@ -27,7 +32,7 @@ function Dashboard(props) {
                 </form>
                 <CountriesList
                     countries={countries}
-                    setCountries={setCountries}
+                    pageSize={5}
                 />
             </div>
         </div>
