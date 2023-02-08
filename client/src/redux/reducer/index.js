@@ -3,10 +3,12 @@ import {
     GET_COUNTRIES_BY_NAME,
     ORDER_BY_NAME,
     ORDER_BY_POPULATION,
+    COUNTRY_DETAIL
 } from "../actions";
 
 const initialState = {
     countries: [],
+    countryDetail:{}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -20,13 +22,13 @@ const rootReducer = (state = initialState, action) => {
         case GET_COUNTRIES_BY_NAME:
             return {
                 ...state,
-                countries: [...payload],
-            };
-        // case CREATE_FUTBOLISTA:
-        //    return {
-        //       ...state,
-        //       futbolistas:[...state.futbolistas, action.payload]
-        //    }
+                countries: payload
+            }
+        case COUNTRY_DETAIL:
+            return {
+                ...state,
+                countryDetail: payload
+            }
         case ORDER_BY_NAME:
             return {
                 ...state,

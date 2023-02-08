@@ -7,6 +7,7 @@ import Dashboard from "./Pages/Dashboard";
 import Home from "./Pages/Home";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import CountryDetail from "./Pages/CountryDetail";
 
 const router = createBrowserRouter([
     {
@@ -14,13 +15,17 @@ const router = createBrowserRouter([
         element: <Home />,
     },
     {
-        path: "/dashboard",
+        path: "/countries",
         element: <Dashboard />,
     },
     {
         path: "/activity",
         element: <ActivityForm />,
     },
+    {
+        path: "/Country/:id",
+        element:<CountryDetail/>
+    }
 ]);
 
 ReactDOM.render(

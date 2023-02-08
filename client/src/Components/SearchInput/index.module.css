@@ -1,9 +1,9 @@
 .form {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: baseline;
-    position: sticky;
-    top: 5px
+
+    
 }
 .form input{
     height: 30px;

@@ -1,27 +1,15 @@
 import React, { useState } from "react";
 import * as style from "./index.module.css";
+import {useDispatch} from "react-redux"
+import * as actions from "../../redux/actions"
+import {validate} from "../../Utils"
 
-export function validate(inputs) {
-    const errors = {};
-    if (inputs.name.length === 0) {
-        errors.name = "Se requiere un nombre";
-    }
-    if (
-        isNaN(inputs.duration[0]) ||
-        (inputs.duration.slice(2) !== "semana" &&
-            inputs.duration.slice(2) !== "semanas" &&
-            inputs.duration.slice(2) !== "mes" &&
-            inputs.duration.slice(2) !== "meses")
-    ) {
-        errors.duration = "ejmplos validos(1 mes, 1 semana)";
-    }
-    return errors;
-}
 
 export default function ActivityForm() {
+    const dispatch = useDispatch()
     const [inputs, setInputs] = useState({
         name: "",
-        difficulty: "",
+        difficulty: "1",
         duration: "",
         season: "",
     });
@@ -34,11 +22,11 @@ export default function ActivityForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (Object.values(errors).length === 0) {
-            alert("Datos completos");
+            dispatch(actions.createActivity(inputs))
             setInputs(() => {
                 return {
                     name: "",
-                    difficulty: "",
+                    difficulty: "1",
                     duration: "",
                     season: "",
                 };
@@ -80,17 +68,18 @@ export default function ActivityForm() {
                         className={errors.name && style.warning}
                         value={inputs.name}
                         onChange={handleChange}
-                        placeholder="Escribe el nombre de la act..."
+                        placeholder="Escribe el nombre de la actividad..."
                         type="text"
                     />
                     <p className={style.danger}>{errors.name}</p>
                     <label>Dificultad:</label>
+                    <span>{inputs.difficulty}</span>
                     <input
                         name="difficulty"
                         className={errors.difficulty && "warning"}
                         value={inputs.difficulty}
                         onChange={handleChange}
-                        placeholder="dificultad del 1 a 5..."
+                        placeholder="Dificultad del 1 a 5..."
                         type="range"
                         min="1"
                         max="5"
@@ -103,7 +92,7 @@ export default function ActivityForm() {
                         className={errors.duration && "warning"}
                         value={inputs.duration}
                         onChange={handleChange}
-                        placeholder="Ejemplo 1 semana..."
+                        placeholder="Ejemplo 1 semana, 1 mes..."
                         type="text"
                     />
                     <p className={style.danger}>{errors.duration}</p>
@@ -113,7 +102,7 @@ export default function ActivityForm() {
                         className={errors.season && "warning"}
                         value={inputs.season}
                         onChange={handleChange}
-                        placeholder="Verano, invierno etc..."
+                        placeholder="Verano, invierno, Primaver, Otoño..."
                         type="text"
                     />
                     <p className="danger">{errors.season}</p>

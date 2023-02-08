@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import CountriesList from "../../Components/CountriesList";
 import * as actions from "../../redux/actions";
-import * as style from "./index.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import * as style from "./index.module.css";
 import SearchInput from "../../Components/SearchInput";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
     const countries = useSelector(state => {
         return [ ...state.countries ];
      });
     const dispatch = useDispatch();
-
+     console.log(countries)
     useEffect(() => {
         dispatch(actions.getAllCountries());
     }, [dispatch]);
@@ -36,6 +37,7 @@ function Dashboard() {
 
     return (
         <div className={style.bg}>
+            <Link to="/activity">asd    </Link>
             <div className={style.container}>
                 <SearchInput handleSubmit={handleSubmit}/>
                 <div className={style.filters}>

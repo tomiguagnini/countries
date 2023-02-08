@@ -16,7 +16,7 @@ const getAllCountries = async (req, res) => {
             );
             return res.status(200).json(results);
         } else {
-            const allCountries = await Country.findAll();
+            const allCountries = await Country.findAll({include: Activity});
             if (allCountries.length === 0) {
                 const response = await axios.get(
                     "https://restcountries.com/v3/all"
@@ -48,7 +48,7 @@ const getAllCountries = async (req, res) => {
 const getCountryByPK = async (req, res) => {
     try {
         const { id } = req.params;
-        const country = await Country.findByPk(id.toUpperCase());
+        const country = await Country.findByPk(id.toUpperCase(),{include:Activity});
 
         if (country === null) {
             throw Error("Not Found");
@@ -64,6 +64,7 @@ const createActivity = async (req, res) => {
     try {
 
         //req.body.id = Math.floor(Math.random() * 100000).toString();
+        req.body.idCountry = 'ARG'
         const {  name, difficulty, season, duration, idCountry } = req.body;
         console.log(req.body);
         if (!name || !difficulty || !season || !duration || !idCountry) {
