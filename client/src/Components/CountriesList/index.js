@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import * as style from "./index.module.css";
 
-function CountriesList({ countries, pageSize }) {
+function CountriesList({ countries }) {
     const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 9;
     const pagesCount = Math.ceil(countries.length / pageSize);
 
     const itemsOnCurrentPage = countries.slice(
@@ -13,20 +14,21 @@ function CountriesList({ countries, pageSize }) {
     return (
         <>
             <div className={style.cardContainer}>
-
-            {itemsOnCurrentPage.map((c) => {
-                return (
-                    <div className={style.card} key={c.id}>
-                        <img
-                            className={style.img}
-                            src={c.flag.split(",")[0]}
-                            alt={c.name}
+                {itemsOnCurrentPage.map((c) => {
+                    return (
+                        <div className={style.card} key={c.id}>
+                            <img
+                                className={style.img}
+                                src={c.flag.split(",")[0]}
+                                alt={c.name}
                             />
-                        <h3>{c.name}</h3>
-                        <h4>{c.continent}</h4>
-                    </div>
-                );
-            })}
+                            <div className={style.info}>
+                                <h3>{c.name}</h3>
+                                <h4>{c.continent}</h4>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
             <div className={style.pageButton}>
                 <button

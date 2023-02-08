@@ -1,6 +1,6 @@
 .bg{
     height: 100%;
-    background-image: url('../../Assets/img/countries.jpg');
+    background-image: var(--backgraund-primary);
     background-size: cover;
     background-repeat: repeat;
     display: flex;
@@ -9,34 +9,20 @@
 }
 .container{
     height: 100vh;
-    width: 360px;
+    width: 90%;
     border-radius:5px;
     padding:0px 5px;
-    background-color: rgba(248, 247, 247, 0.6);
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: scroll;
     
 }
-.form {
-    display: flex;
-    justify-content: space-around;
-    align-items: baseline;
-    position: sticky;
-    top: 5px
-}
-.form input{
-    height: 30px;
-    width: 100%;
+
+.filters{
     margin-top: 10px;
-    border: none;
-    border-radius: 5px;
 }
-.form button{
-    width: 60px;
-    border: none;
-    border-radius: 5px;
-    height: 30px;
-    margin:0px 5px;
+.filters label{
+    color: var(--white);
 }

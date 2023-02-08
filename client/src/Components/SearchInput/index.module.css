@@ -1,0 +1,21 @@
+.form {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    position: sticky;
+    top: 5px
+}
+.form input{
+    height: 30px;
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+}
+.form button{
+    width: 60px;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    margin:0px 5px;
+}
