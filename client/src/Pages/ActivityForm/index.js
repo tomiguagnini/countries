@@ -1,34 +1,51 @@
 import React, { useState } from "react";
 import * as style from "./index.module.css";
-import {useDispatch} from "react-redux"
-import * as actions from "../../redux/actions"
-import {validate} from "../../Utils"
+import { useSelector } from "react-redux";
 
+import { validate } from "../../Utils";
+import { createActivity } from "../../Services/createActivity";
+import CountryCheckbox from "../../Components/CountryCheckbox";
 
 export default function ActivityForm() {
-    const dispatch = useDispatch()
+    const countries = useSelector((state) => {
+        return [...state.countries];
+    });
     const [inputs, setInputs] = useState({
         name: "",
         difficulty: "1",
         duration: "",
         season: "",
+        countriesId: [],
     });
     const [errors, setErrors] = useState({
         name: "",
         difficulty: "",
         duration: "",
         season: "",
+        countriesId: [],
     });
+    console.log(inputs, errors);
     const handleSubmit = (e) => {
         e.preventDefault();
         if (Object.values(errors).length === 0) {
-            dispatch(actions.createActivity(inputs))
+            createActivity(inputs).then(
+                (res) => {
+                    if (res.status === 200) {
+                        alert("Activity creada correctamente");
+                    }
+                },
+                (error) => {
+                    console.log(error.message);
+                    alert("error al crear actividad");
+                }
+            );
             setInputs(() => {
                 return {
                     name: "",
                     difficulty: "1",
                     duration: "",
                     season: "",
+                    countriesId: [],
                 };
             });
             setErrors(() => {
@@ -37,6 +54,7 @@ export default function ActivityForm() {
                     difficulty: "",
                     duration: "",
                     season: "",
+                    countriesId: [],
                 };
             });
         } else {
@@ -48,6 +66,33 @@ export default function ActivityForm() {
             return {
                 ...prevValue,
                 [e.target.name]: e.target.value,
+            };
+        });
+        setErrors(
+            validate({
+                ...inputs,
+                [e.target.name]: e.target.value,
+            })
+        );
+    };
+    const handleSelect = (e) => {
+        const select = e.target.selectedIndex;
+        const option = e.target.options[select].value;
+        console.log(option);
+        setInputs((prevValue) => {
+            return {
+                ...prevValue,
+                season: option,
+            };
+        });
+        setErrors(validate({ ...inputs, season: option }));
+    };
+    const handleCheckBox = (e) => {
+        console.log(e.target.id);
+        setInputs((prevValue) => {
+            return {
+                ...prevValue,
+                countriesId: prevValue.countriesId.concat(e.target.id),
             };
         });
         setErrors(
@@ -97,15 +142,19 @@ export default function ActivityForm() {
                     />
                     <p className={style.danger}>{errors.duration}</p>
                     <label>Temporada:</label>
-                    <input
-                        name="season"
-                        className={errors.season && "warning"}
-                        value={inputs.season}
-                        onChange={handleChange}
-                        placeholder="Verano, invierno, Primaver, Otoño..."
-                        type="text"
+                    <select onChange={handleSelect}>
+                        <option value="">---</option>
+                        <option value="Verano">Verano</option>
+                        <option value="Invierno">Invierno</option>
+                        <option value="Otoño">Otoño</option>
+                        <option value="Primaver">Primavera</option>
+                    </select>
+                    <p className={style.danger}>{errors.season}</p>
+                    <label>Paises:</label>
+                    <CountryCheckbox
+                        countries={countries}
+                        handleCheckBox={handleCheckBox}
                     />
-                    <p className="danger">{errors.season}</p>
                     <input type="submit"></input>
                 </form>
             </div>

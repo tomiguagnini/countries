@@ -12,5 +12,8 @@ export function validate(inputs) {
     ) {
         errors.duration = "ejmplos validos(1 mes, 1 semana)";
     }
+    if (inputs.season === ""){
+        errors.season = "Debe elegir una opcion"
+    }
     return errors;
 }

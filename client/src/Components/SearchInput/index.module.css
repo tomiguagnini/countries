@@ -1,13 +1,11 @@
 .form {
     display: flex;
     justify-content: center;
-    align-items: baseline;
-
-    
+    align-items: baseline;  
 }
 .form input{
     height: 30px;
-    width: 100%;
+    width: 60%;
     margin-top: 10px;
     border: none;
     border-radius: 5px;

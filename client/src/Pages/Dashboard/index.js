@@ -4,7 +4,7 @@ import * as actions from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import * as style from "./index.module.css";
 import SearchInput from "../../Components/SearchInput";
-import { Link } from "react-router-dom";
+import NavBar from "../../Components/NavBar";
 
 function Dashboard() {
     const countries = useSelector(state => {
@@ -37,13 +37,13 @@ function Dashboard() {
 
     return (
         <div className={style.bg}>
-            <Link to="/activity">asd    </Link>
+            <NavBar/>
             <div className={style.container}>
                 <SearchInput handleSubmit={handleSubmit}/>
                 <div className={style.filters}>
                     <label>Orden: </label>
                     <select name="order" onChange={handleOrder}>
-                        <option value="default" disabled></option>
+                        <option value="default"> default</option>
                         <option value="alfabetico">Alfabetico A..Z </option>
                         <option value="poblacion">Poblacion A..z </option>
                     </select>

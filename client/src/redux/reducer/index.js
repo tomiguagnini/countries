@@ -17,7 +17,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_ALL_COUNTRIES:
             return {
                 ...state,
-                countries: [...state.countries, ...payload],
+                countries: [...payload],
             };
         case GET_COUNTRIES_BY_NAME:
             return {

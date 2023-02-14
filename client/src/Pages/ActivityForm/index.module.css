@@ -8,6 +8,8 @@
     margin: auto;
     background-color: var(--backgraund-transparent);
     padding: 20px;
+    border-radius: 5px;
+    
 }
 .form{
     display: flex;
@@ -15,7 +17,7 @@
     color:var(--white);
 }
 .form label{
-    margin-top: 15px;
+    margin-top: 10px;
     color: var(--white);
 }
 .form input {

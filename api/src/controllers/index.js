@@ -63,16 +63,17 @@ const getCountryByPK = async (req, res) => {
 const createActivity = async (req, res) => {
     try {
 
-        //req.body.id = Math.floor(Math.random() * 100000).toString();
-        req.body.idCountry = 'ARG'
-        const {  name, difficulty, season, duration, idCountry } = req.body;
+        
+        const {  name, difficulty, season, duration, countriesId } = req.body;
         console.log(req.body);
-        if (!name || !difficulty || !season || !duration || !idCountry) {
+        if (!name || !difficulty || !season || !duration || countriesId.length == 0) {
             throw Error("Faltan campos");
         }
-        const country = await Country.findByPk(idCountry.toUpperCase());
         const activity = await Activity.create(req.body);
-        activity.addCountry(country);
+        countriesId.forEach(async(e) => {
+            const country = await Country.findByPk(e.toUpperCase());
+            activity.addCountry(country);
+        });
         return res.status(200).json(activity);
     } catch (error) {
         console.log(error);

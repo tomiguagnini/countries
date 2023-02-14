@@ -1,0 +1,11 @@
+.box{
+    height: 150px;
+    overflow: scroll;
+}
+.checkbox{
+    display: flex;
+    justify-content: baseline;
+}
+.checkbox label {
+    margin-left: 5px;
+}

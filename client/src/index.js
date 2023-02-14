@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import CountryDetail from "./Pages/CountryDetail";
 
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -32,6 +33,7 @@ ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
             <RouterProvider router={router} />
+            
         </Provider>
     </React.StrictMode>,
     document.getElementById("root")
