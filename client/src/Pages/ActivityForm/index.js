@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { validate } from "../../Utils";
 import { createActivity } from "../../Services/createActivity";
 import CountryCheckbox from "../../Components/CountryCheckbox";
+import NavBar from "../../Components/NavBar";
 
 export default function ActivityForm() {
     const countries = useSelector((state) => {
@@ -105,6 +106,7 @@ export default function ActivityForm() {
 
     return (
         <div className={style.bg}>
+            <NavBar buttonName='Back to home' path='/Countries'/>
             <div className={style.container}>
                 <form onSubmit={handleSubmit} className={style.form}>
                     <label>Nombre:</label>

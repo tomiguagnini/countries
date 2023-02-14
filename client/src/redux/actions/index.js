@@ -9,9 +9,8 @@ export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
 export const COUNTRY_DETAIL = "COUNTRY_DETAIL";
-
-
-
+export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
+export const RESET = "RESET";
 
 export const getAllCountries = () => {
     return async function (dispatch) {
@@ -27,12 +26,11 @@ export const getAllCountries = () => {
     };
 };
 
-
 export const getCountriesByName = (name) => {
     return async function (dispatch) {
         try {
             let response = await axios.get(
-              `http://localhost:3001/countries?name=${name}`
+                `http://localhost:3001/countries?name=${name}`
             );
             return dispatch({
                 type: GET_COUNTRIES_BY_NAME,
@@ -44,25 +42,25 @@ export const getCountriesByName = (name) => {
     };
 };
 
-export const createActivity = (activity)=>{
-    return async function (dispatch){
-        try{
-            await axios.post("http://localhost:3001/activities",activity)
+export const createActivity = (activity) => {
+    return async function (dispatch) {
+        try {
+            await axios.post("http://localhost:3001/activities", activity);
             return dispatch({
-                type: CREATE_ACTIVITY
-            })
-        }catch (error){
-            console.log(error)
+                type: CREATE_ACTIVITY,
+            });
+        } catch (error) {
+            console.log(error);
         }
-    }
-}
+    };
+};
 
-export const getCountry = (id)=>{
+export const getCountry = (id) => {
     return async function (dispatch) {
         try {
             let response = await axios.get(
-              `http://localhost:3001/countries/${id}`
-            )
+                `http://localhost:3001/countries/${id}`
+            );
             return dispatch({
                 type: COUNTRY_DETAIL,
                 payload: response.data,
@@ -71,20 +69,36 @@ export const getCountry = (id)=>{
             console.log(error);
         }
     };
-}
-
-export const orderByName = ()=>{
+};
+export const filterByContinent = (continent) => {
     return {
-        type : ORDER_BY_NAME
-    }
-}
+        type: FILTER_BY_CONTINENT,
+        payload: continent
+    };
+};
 
-export const orderByPopulation = ()=>{
+export const orderByName = () => {
     return {
-        type : ORDER_BY_POPULATION
-    }
+        type: ORDER_BY_NAME,
+    };
+};
+
+export const orderByPopulation = () => {
+    return {
+        type: ORDER_BY_POPULATION,
+    };
+};
+
+export const reset =() =>{
+    return async function (dispatch) {
+        try {
+            let response = await axios.get("http://localhost:3001/countries");
+            return dispatch({
+                type: RESET,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 }
-
-
-
-

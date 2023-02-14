@@ -80,8 +80,17 @@ const createActivity = async (req, res) => {
         return res.status(404).json({ err: error.message });
     }
 };
+const getAllActivities = async(req,res)=>{
+    try {
+        const allActivities = await Activity.findAll({include: Country});
+        return res.status(200).json(allActivities)
+    } catch (error) {
+        return res.status(404).json({err: error.message})
+    }
+}
 module.exports = {
     getCountryByPK,
     getAllCountries,
     createActivity,
+    getAllActivities
 };

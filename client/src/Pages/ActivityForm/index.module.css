@@ -1,14 +1,16 @@
 .bg{
     background: var(--backgraund-primary);
     background-size: cover;
-    height: 100vh;
+    height: 100%;
 }
 .container{
     max-width: 360px;
+    height: 100vh;
     margin: auto;
     background-color: var(--backgraund-transparent);
     padding: 20px;
     border-radius: 5px;
+    margin-top: 20px;
     
 }
 .form{

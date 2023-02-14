@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as style from "./index.module.css";
 
-function NavBar(props) {
+function NavBar({buttonName,path}) {
     return (
         <div className={style.nav}>
             <h2>Countries</h2>
             <button>
-                <Link to="/activity" className={style.link}>Create Activity</Link>
+                <Link to={path} className={style.link}>{buttonName}</Link>
             </button>
         </div>
     );

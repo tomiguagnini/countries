@@ -10,7 +10,7 @@ function Home(props) {
                 <div className={style.titleContainer}>
                     <h1>Countries</h1>
                     <Link to='/countries'>
-                    <button className={style.btn}>Go!</button>
+                    <button className={style.btn}>Dashboard</button>
                     </Link>
 
                 </div>
