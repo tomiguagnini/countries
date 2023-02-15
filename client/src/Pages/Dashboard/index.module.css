@@ -18,21 +18,3 @@
     
 }
 
-.filters{
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-}
-.filters label{
-    color: var(--white);
-    margin: 0px 8px;
-}
-.filters button{
-    margin-left: 10px;
-    width: 60px;
-    border: none;
-    border-radius: 5px;
-    height: 30px;
-    margin:0px 5px;
-}

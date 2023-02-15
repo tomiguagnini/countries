@@ -1,0 +1,22 @@
+.filters{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+.filters select{
+    margin-left: 5px;
+    border-radius: 5px;
+}
+.filters label{
+    color: var(--white);
+    margin-left: 5px;
+}
+.filters button{
+    margin-left: 10px;
+    width: 60px;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    margin:0px 5px;
+}

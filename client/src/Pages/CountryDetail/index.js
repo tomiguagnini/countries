@@ -3,6 +3,7 @@ import * as style from "./index.module.css";
 import * as actions from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import NavBar from "../../Components/NavBar";
 function CountryDetail() {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function CountryDetail() {
     // }
     return (
         <div className={style.bg}>
+            <NavBar buttonName='Back to home' path='/Countries'/>
             <div className={style.container}>
                 {country ? (
                     <div className={style.cardDetail}>

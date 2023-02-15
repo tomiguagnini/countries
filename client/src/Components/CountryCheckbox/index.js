@@ -1,7 +1,6 @@
 import React from "react";
 import * as style from "./index.module.css"
 function CountryCheckbox({countries, handleCheckBox}) {
-    console.log(countries)
     return (
         <div className={style.box}>
             

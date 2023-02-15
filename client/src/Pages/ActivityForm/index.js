@@ -23,10 +23,11 @@ export default function ActivityForm() {
         difficulty: "",
         duration: "",
         season: "",
-        countriesId: [],
+        countriesId: "",
     });
     console.log(inputs, errors);
     const handleSubmit = (e) => {
+        setErrors(validate(inputs))
         e.preventDefault();
         if (Object.values(errors).length === 0) {
             createActivity(inputs).then(
@@ -55,7 +56,7 @@ export default function ActivityForm() {
                     difficulty: "",
                     duration: "",
                     season: "",
-                    countriesId: [],
+                    countriesId: "",
                 };
             });
         } else {
@@ -88,20 +89,36 @@ export default function ActivityForm() {
         });
         setErrors(validate({ ...inputs, season: option }));
     };
-    const handleCheckBox = (e) => {
-        console.log(e.target.id);
-        setInputs((prevValue) => {
-            return {
-                ...prevValue,
-                countriesId: prevValue.countriesId.concat(e.target.id),
-            };
-        });
-        setErrors(
-            validate({
-                ...inputs,
-                [e.target.name]: e.target.value,
+    const handleCheckBox = async(e) => {
+        
+        if(e.target.checked){
+             setInputs((prevValue) => {
+                return {
+                    ...prevValue,
+                    countriesId: prevValue.countriesId.concat(e.target.id),
+                };
             })
-        );
+            setErrors(
+                validate({
+                    ...inputs,
+                    countriesId: inputs.countriesId.concat(e.target.id),
+                })
+            );
+        }else{
+            setInputs((prevValue) => {
+                return {
+                    ...prevValue,
+                    countriesId: prevValue.countriesId.filter(c => c !== e.target.id),
+                };
+            });
+            setErrors(
+                validate({
+                    ...inputs,
+                    countriesId: inputs.countriesId.filter(c => c !== e.target.id)
+                })
+            );
+        }
+        
     };
 
     return (
@@ -116,6 +133,7 @@ export default function ActivityForm() {
                         value={inputs.name}
                         onChange={handleChange}
                         placeholder="Escribe el nombre de la actividad..."
+                        autoComplete="off"
                         type="text"
                     />
                     <p className={style.danger}>{errors.name}</p>
@@ -153,11 +171,12 @@ export default function ActivityForm() {
                     </select>
                     <p className={style.danger}>{errors.season}</p>
                     <label>Paises:</label>
+                    <p className={style.danger}>{errors.countriesId}</p>
                     <CountryCheckbox
                         countries={countries}
                         handleCheckBox={handleCheckBox}
                     />
-                    <input type="submit"></input>
+                    <button type="submit">Enviar</button>
                 </form>
             </div>
         </div>

@@ -5,7 +5,9 @@ import * as style from "./index.module.css";
 function NavBar({buttonName,path}) {
     return (
         <div className={style.nav}>
-            <h2>Countries</h2>
+            <Link className={style.link} to='/countries'>
+                <h2 >Countries</h2>
+            </Link>
             <button>
                 <Link to={path} className={style.link}>{buttonName}</Link>
             </button>

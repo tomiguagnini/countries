@@ -7,9 +7,13 @@ export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const GET_COUNTRIES_BY_NAME = "GET_COUNTRIES_BY_NAME";
 export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const ORDER_BY_NAME_DESC = "ORDER_BY_NAME_DESC"
 export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
+export const ORDER_BY_POPULATION_DESC = "ORDER_BY_POPULATION_DESC";
 export const COUNTRY_DETAIL = "COUNTRY_DETAIL";
 export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
+export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
+export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const RESET = "RESET";
 
 export const getAllCountries = () => {
@@ -70,6 +74,19 @@ export const getCountry = (id) => {
         }
     };
 };
+export const getActivities = ()=>{
+    return async function (dispatch) {
+        try {
+            let response = await axios.get("http://localhost:3001/activities");
+            return dispatch({
+                type: GET_ACTIVITIES,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
 export const filterByContinent = (continent) => {
     return {
         type: FILTER_BY_CONTINENT,
@@ -77,16 +94,27 @@ export const filterByContinent = (continent) => {
     };
 };
 
-export const orderByName = () => {
+export const filterByActivity = (id) =>{
     return {
-        type: ORDER_BY_NAME,
-    };
+        type: FILTER_BY_ACTIVITY,
+        payload: id
+    }
+}
+
+export const orderByName = (type = 'ASC') => {
+    if ( type === "DESC"){
+        return{ type: ORDER_BY_NAME_DESC }
+    }else{
+        return { type: ORDER_BY_NAME }
+    }
 };
 
-export const orderByPopulation = () => {
-    return {
-        type: ORDER_BY_POPULATION,
-    };
+export const orderByPopulation = (type = 'ASC') => {
+    if ( type === "DESC"){
+        return{ type: ORDER_BY_POPULATION_DESC}
+    }else{
+        return { type: ORDER_BY_POPULATION }
+    }
 };
 
 export const reset =() =>{

@@ -28,7 +28,18 @@
     border: none;
     border: 1px solid gray;
     border-radius: 5px;
-
+}
+.form button{
+    height: 30px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+.form select{
+    height: 30px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 5px;
 }
 
 .warning{

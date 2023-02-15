@@ -62,24 +62,36 @@ const getCountryByPK = async (req, res) => {
 };
 const createActivity = async (req, res) => {
     try {
-
-        
-        const {  name, difficulty, season, duration, countriesId } = req.body;
-        console.log(req.body);
-        if (!name || !difficulty || !season || !duration || countriesId.length == 0) {
-            throw Error("Faltan campos");
-        }
-        const activity = await Activity.create(req.body);
-        countriesId.forEach(async(e) => {
-            const country = await Country.findByPk(e.toUpperCase());
-            activity.addCountry(country);
-        });
-        return res.status(200).json(activity);
+      const { name, difficulty, season, duration, countriesId } = req.body;
+  
+      if (!name) {
+        throw Error("Se requiere un nombre");
+      }
+      if (!difficulty) {
+        throw Error("Se requiere una dificultad");
+      }
+      if (!season) {
+        throw Error("Se requiere una temporada");
+      }
+      if (!duration) {
+        throw Error("Se requiere una duración");
+      }
+      if (!countriesId || countriesId.length === 0) {
+        throw Error("Se requiere al menos un país");
+      }
+  
+      const activity = await Activity.create({ name, difficulty, season, duration });
+  
+      const countries = await Country.findAll({ where: { id: countriesId.map((id) => id.toUpperCase()) } });
+      await activity.addCountries(countries);
+  
+      return res.status(200).json(activity);
     } catch (error) {
-        console.log(error);
-        return res.status(404).json({ err: error.message });
+      console.log(error);
+      return res.status(404).json({ err: error.message });
     }
-};
+  };
+  
 const getAllActivities = async(req,res)=>{
     try {
         const allActivities = await Activity.findAll({include: Country});
