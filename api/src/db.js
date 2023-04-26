@@ -6,10 +6,11 @@ const modelCountry = require('./models/Country')
 const modelActivity = require('./models/Activity')
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
-  DB_PORT
+  DB_PORT,
+  DB_DATABASE
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries2`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
