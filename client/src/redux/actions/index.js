@@ -1,7 +1,7 @@
 /* 3️⃣ ***ACTIONS*** 3️⃣ */
 
 //📢 Puedes utilizar axios si lo deseas, sólo debes importarlo 📢
-import axios from "axios";
+import axios from "../../libs/axios";
 
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const GET_COUNTRIES_BY_NAME = "GET_COUNTRIES_BY_NAME";
@@ -19,7 +19,7 @@ export const RESET = "RESET";
 export const getAllCountries = () => {
     return async function (dispatch) {
         try {
-            let response = await axios.get("http://localhost:3001/countries");
+            let response = await axios.get("/countries");
             return dispatch({
                 type: GET_ALL_COUNTRIES,
                 payload: response.data,
@@ -34,7 +34,7 @@ export const getCountriesByName = (name) => {
     return async function (dispatch) {
         try {
             let response = await axios.get(
-                `http://localhost:3001/countries?name=${name}`
+                `/countries?name=${name}`
             );
             return dispatch({
                 type: GET_COUNTRIES_BY_NAME,
@@ -49,7 +49,7 @@ export const getCountriesByName = (name) => {
 export const createActivity = (activity) => {
     return async function (dispatch) {
         try {
-            await axios.post("http://localhost:3001/activities", activity);
+            await axios.post("/activities", activity);
             return dispatch({
                 type: CREATE_ACTIVITY,
             });
@@ -63,7 +63,7 @@ export const getCountry = (id) => {
     return async function (dispatch) {
         try {
             let response = await axios.get(
-                `http://localhost:3001/countries/${id}`
+                `/countries/${id}`
             );
             return dispatch({
                 type: COUNTRY_DETAIL,
@@ -77,7 +77,7 @@ export const getCountry = (id) => {
 export const getActivities = ()=>{
     return async function (dispatch) {
         try {
-            let response = await axios.get("http://localhost:3001/activities");
+            let response = await axios.get("/activities");
             return dispatch({
                 type: GET_ACTIVITIES,
                 payload: response.data,
@@ -120,7 +120,7 @@ export const orderByPopulation = (type = 'ASC') => {
 export const reset =() =>{
     return async function (dispatch) {
         try {
-            let response = await axios.get("http://localhost:3001/countries");
+            let response = await axios.get("/countries");
             return dispatch({
                 type: RESET,
                 payload: response.data,

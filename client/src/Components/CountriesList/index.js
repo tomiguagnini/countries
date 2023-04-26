@@ -31,6 +31,7 @@ function CountriesList({ countries }) {
                 >
                     Anterior
                 </button>
+                <>{currentPage}</>
                 <button
                     disabled={currentPage === pagesCount}
                     onClick={() => setCurrentPage(currentPage + 1)}

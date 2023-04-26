@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import CountriesList from "../../Components/CountriesList";
 import * as actions from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,14 +14,11 @@ function Dashboard() {
     const countriesFiltered = useSelector(state =>{
         return [...state.countriesFiltered]
     })
-    console.log(countries)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(actions.getAllCountries());
         dispatch(actions.getActivities())
     }, [dispatch]);
-    
-
 
     return (
         <div className={style.bg}>

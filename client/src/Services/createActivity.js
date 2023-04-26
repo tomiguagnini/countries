@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios from "../libs/axios";
 
 export const createActivity = async(activity)=>{
-    return await axios.post("http://localhost:3001/activities",activity)
+    return await axios.post("/activities",activity)
 }

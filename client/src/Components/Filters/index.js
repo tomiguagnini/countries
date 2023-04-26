@@ -23,7 +23,9 @@ function Filter(props) {
                 break;   
             case '4':
                 dispatch(actions.orderByPopulation('DESC'));      
-                break;   
+                break;
+            default:
+                return;   
         }
             
         

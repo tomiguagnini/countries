@@ -1,11 +1,11 @@
 .bg{
     background: var(--backgraund-primary);
     background-size: cover;
-    height: 100%;
+    min-height: 100vh;
 }
 .container{
     max-width: 360px;
-    height: 100vh;
+   
     margin: auto;
     background-color: var(--backgraund-transparent);
     padding: 20px;

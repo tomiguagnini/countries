@@ -1,7 +1,7 @@
 import React from "react";
 import * as style from "./index.module.css"
 import * as actions from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function SearchInput() {
     const dispatch = useDispatch()
