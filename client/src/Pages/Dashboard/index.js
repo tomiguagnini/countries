@@ -14,6 +14,7 @@ function Dashboard() {
     const countriesFiltered = useSelector(state =>{
         return [...state.countriesFiltered]
     })
+    console.log(countries)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(actions.getAllCountries());

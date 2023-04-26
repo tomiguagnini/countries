@@ -38,7 +38,7 @@ export default function ActivityForm() {
                 },
                 (error) => {
                     console.log(error.message);
-                    alert("error al crear actividad");
+                    alert(error.response.data.err);
                 }
             );
             setInputs(() => {

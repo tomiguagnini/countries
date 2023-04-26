@@ -44,6 +44,7 @@ function Filter(props) {
     return (
         <div>
             <div className={style.filters}>
+                <div>
                 <label>Orden: </label>
                 <select name="order" onChange={handleOrder}>
                     <option value="default"></option>
@@ -52,6 +53,8 @@ function Filter(props) {
                     <option value="3">Poblacion A..Z </option>
                     <option value="4">Poblacion Z..A </option>
                 </select>
+                </div>
+                <div>
                 <label>Continente: </label>
                 <select name="filter" onChange={handleFilter}>
                     <option value="default"></option>
@@ -61,6 +64,8 @@ function Filter(props) {
                     <option value="Africa">Africa</option>
                     <option value="Antartic">Antartida</option>
                 </select>
+                </div>
+                <div>
                 <label>Actividad: </label>
                 <select onChange={handleActivity}>
                     <option value=""></option>
@@ -68,7 +73,10 @@ function Filter(props) {
                         return <option value={a.id}>{a.name}</option>;
                     })}
                 </select>
+                </div>
+                <div>
                 <button onClick={handleReset}>Reset</button>
+                </div>
             </div>
         </div>
     );

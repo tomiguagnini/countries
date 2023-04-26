@@ -26,10 +26,10 @@
     overflow: scroll;
     
 }
-img {
+.cardDetail img {
     width: 100%;
     object-fit: cover;
-    height: 250px;
+    max-height: 350px;
     border-radius: 10px 10px 0 0;
 }
 .title{

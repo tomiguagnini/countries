@@ -79,9 +79,11 @@ const createActivity = async (req, res) => {
       if (!countriesId || countriesId.length === 0) {
         throw Error("Se requiere al menos un país");
       }
-  
+      const act = await Activity.findOne({where: {name: name}})
+      if (act){
+        throw Error('Actividad ya existe')
+      }
       const activity = await Activity.create({ name, difficulty, season, duration });
-  
       const countries = await Country.findAll({ where: { id: countriesId.map((id) => id.toUpperCase()) } });
       await activity.addCountries(countries);
   
